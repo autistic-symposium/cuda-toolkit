@@ -181,8 +181,7 @@ $ cuda-gdb <binary>
 ```
 $ nvprof --print-gpu-trace ./main --benchmark
 $ nvprof --analysis-metrics -o  nbody-analysis.nvprof ./main --benchmark -numdevices=2 -i=1
-``
-`
+```
 
 #### cuda-memcheck
 
