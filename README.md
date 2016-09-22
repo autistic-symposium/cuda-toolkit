@@ -181,7 +181,7 @@ $ cuda-gdb <binary>
 ```
 $ nvprof --print-gpu-trace ./main --benchmark
 $ nvprof --analysis-metrics -o  nbody-analysis.nvprof ./main --benchmark -numdevices=2 -i=1
-`` `
+```
 
 #### cuda-memcheck
 
@@ -221,7 +221,7 @@ int row = blockIdx.x * blockDim.x + threadIdx.x
 int col = blockIdx.y * blockDim.y + threadIdx.y
 ```
 
-and a general index can be written with
+and a general flat index can be written with
 
 ```
 i = r*w + c
@@ -241,7 +241,7 @@ dim3 gridSize = dim3(bx, by)
 And then you can launch:
 
 ```
-dim3 gridSize = dim3(bx, by)
+KernelName<<<gridSize, blockSize>>> (args)
 ```
 
 
