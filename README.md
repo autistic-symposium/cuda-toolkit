@@ -181,7 +181,7 @@ $ cuda-gdb <binary>
 ```
 $ nvprof --print-gpu-trace ./main --benchmark
 $ nvprof --analysis-metrics -o  nbody-analysis.nvprof ./main --benchmark -numdevices=2 -i=1
-```
+`` `
 
 #### cuda-memcheck
 
@@ -211,12 +211,39 @@ $ cuda-memcheck <exe>
 
 - The process of reading a texture is called a texture fetch. The first parameter of a texture fetch specifies an object called a texture reference.
 
-### 2D Grids
+
+# Index & Architecture
+
+## 2D Grids indices
 
 ```
 int row = blockIdx.x * blockDim.x + threadIdx.x
 int col = blockIdx.y * blockDim.y + threadIdx.y
 ```
+
+and a general index can be written with
+
+```
+i = r*w + c
+```
+
+## 2D Block size
+
+```
+dim blockSize(TX, TY)
+
+int bx = (W + blockSize.x - 1)/blockSize.x
+int by = (H + blockSize.y - 1)/blocksSize.y
+
+dim3 gridSize = dim3(bx, by)
+```
+
+And then you can launch:
+
+```
+dim3 gridSize = dim3(bx, by)
+```
+
 
 # Getting started with CUDA for Deep Learning
 
