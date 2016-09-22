@@ -148,6 +148,8 @@ $ lspci | grep -i nvidia
 ### Building Apps
 
 #### NVCC
+
+```
 $ nvcc -g -G -Xcompiler -Wall main.cpp
 ```
 -g debug
@@ -173,12 +175,14 @@ $ cuda-gdb <binary>
 > cuda kernel block thread
 ```
 
+
 #### nvprof
 
 ```
 $ nvprof --print-gpu-trace ./main --benchmark
 $ nvprof --analysis-metrics -o  nbody-analysis.nvprof ./main --benchmark -numdevices=2 -i=1
-```
+``
+`
 
 #### cuda-memcheck
 
@@ -187,6 +191,7 @@ Runtime error detector tool that detect memory leaks, memory access errors, and 
 ```
 $ cuda-memcheck <exe>
 ```
+
 
 
 ### PTX and SASS Assembly Debugging
