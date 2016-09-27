@@ -80,6 +80,15 @@ $ lspci | grep -i nvidia
 
 - CUDA provides each thread with built-in index variables, which replace the loop index in serial code.
 
+#### Profiling your code to find bottlenek
+
+You only benefit from massive parallelism of GPUs when using batch computations
+large batch sizes and CNNs.
+
+```
+python -m cProfile -s time your_script.py > results.txt
+```
+
 ### Basic Workflow
 
 - The basic tasks needed for CUDA parallelism:
