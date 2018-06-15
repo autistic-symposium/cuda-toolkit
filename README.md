@@ -1,4 +1,4 @@
-# CUDA is so Freakin Fun \m/
+# 💝CUDA Studies for Deep Learning Problems 💝
 
 I'm starting this repository to dump all the material that I've for CUDA when applied for CG and DL.
 
