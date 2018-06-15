@@ -1,6 +1,6 @@
 # 💝CUDA Studies for Deep Learning Problems 💝
 
-I'm starting this repository to dump all the material that I've for CUDA when applied for CG and DL.
+![](DJI_0027.jpg)
 
 What's CUDA?
 
