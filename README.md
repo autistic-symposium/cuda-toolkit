@@ -1,16 +1,18 @@
-# 💝CUDA Studies for Deep Learning Problems 💝
+## CUDA for Deep Learning 
 
-![](DJI_0027.jpg)
+<br>
 
-What's CUDA?
-
-- Parallel computing platform and API by NVIDIA.
-- Allows to use CUDA-enabled GPU for general purpose processing.
+- 👉 **Parallel computing platform and API by NVIDIA.**
+- 👉 **Allows to use CUDA-enabled GPU for general purpose processing.**
 
 
-# Some Intro
+<br>
 
-## GPU Cards
+---
+
+### GPU Cards
+
+<br>
 
 - When discussing CUDA there are four designations:
     - model name/number of the card.
@@ -40,9 +42,15 @@ What's CUDA?
 $ lspci | grep -i nvidia
 ```
 
-## CUDA Essentials
+<br>
 
-### Architecture
+---
+
+### CUDA Essentials
+
+<br>
+
+#### Architecture
 
 - CUDA employs the SIMT (single instruction multiple thread) model.
 
@@ -58,7 +66,9 @@ $ lspci | grep -i nvidia
     - the SM’s control unit directs each of its cores to execute the same instruction simultaneously for each thread in the assigned warp.
         - single instruction multiple thread
 
-### Dynamic memory management
+<br>
+
+#### Dynamic memory management
 
 - Stack memory is limited, and you will produce segmentation fault errors for a N very large or not known at compile time:
     - the header ```stdlib.h``` supports calling dynamic memory management functions.
@@ -80,6 +90,8 @@ $ lspci | grep -i nvidia
 
 - CUDA provides each thread with built-in index variables, which replace the loop index in serial code.
 
+<br>
+
 #### Profiling your code to find bottlenek
 
 You only benefit from massive parallelism of GPUs when using batch computations
@@ -89,7 +101,9 @@ large batch sizes and CNNs.
 python -m cProfile -s time your_script.py > results.txt
 ```
 
-### Basic Workflow
+<br>
+
+#### Basic Workflow
 
 - The basic tasks needed for CUDA parallelism:
     - launching a kernel with specified grid dimensions (number of blocks and threads).
@@ -106,7 +120,11 @@ python -m cProfile -s time your_script.py > results.txt
     - CUDA system schedules and executes the transfers.
     - cudaMallocManaged().
 
-### Qualifiers
+<br>
+
+#### Qualifiers
+
+<br>
 
 - __global__ kernel, called from host, executed on device:
         - cannot return value (always void).
@@ -124,7 +142,13 @@ python -m cProfile -s time your_script.py > results.txt
 
     - They specify the dimensions of the kernel launch.
 
-### The CUDA runtime API
+<br>
+
+---
+
+#### The CUDA runtime API
+
+<br>
 
 - The basic memory calls:
     - cudaMalloc() to allocate device memory.
@@ -154,9 +178,17 @@ python -m cProfile -s time your_script.py > results.txt
     - cudaEventSynchronize() for ensuring completion of asynchronous functions.
     - cudaEventElapsedTime(0 for converting a pair of event records to elapsed time.
 
-### Building Apps
+<br>
 
-#### NVCC
+---
+
+#### Building Apps
+
+<br>
+
+##### NVCC
+
+<br>
 
 ```
 $ nvcc -g -G -Xcompiler -Wall main.cpp
@@ -166,8 +198,11 @@ $ nvcc -g -G -Xcompiler -Wall main.cpp
 -Xcompiler compiler options
 -Wall all the warning messages
 
+<br>
 
-#### cuda-gdb
+##### cuda-gdb
+
+<br>
 
 - debugging:
     - compile with flags -g -G
@@ -184,15 +219,22 @@ $ cuda-gdb <binary>
 > cuda kernel block thread
 ```
 
+<br>
 
-#### nvprof
+##### nvprof
+
+<br>
 
 ```
 $ nvprof --print-gpu-trace ./main --benchmark
 $ nvprof --analysis-metrics -o  nbody-analysis.nvprof ./main --benchmark -numdevices=2 -i=1
 ```
 
-#### cuda-memcheck
+<br>
+
+##### cuda-memcheck
+
+<br>
 
 Runtime error detector tool that detect memory leaks, memory access errors, and hardware errors:
 
@@ -200,15 +242,21 @@ Runtime error detector tool that detect memory leaks, memory access errors, and 
 $ cuda-memcheck <exe>
 ```
 
+<br>
 
+#### PTX and SASS Assembly Debugging
 
-### PTX and SASS Assembly Debugging
+<br>
 
 - PTX is a low-level parallel-thread execution virtual machine and instruction set architecture (ISA). PTX exposes the GPU as a parallel computing device.
 
 - SASS is the low-level assembly language that compiles to binary microcode, which executes natively on NVIDIA GPU hardware.
 
-### Texture Memory
+<br>
+
+#### Texture Memory
+
+<br>
 
 - Although NVIDIA designed the texture units for the classical OpenGL and DirectX rendering pipelines, texture memory has some properties that make it extremely useful for computing.
 
@@ -220,10 +268,17 @@ $ cuda-memcheck <exe>
 
 - The process of reading a texture is called a texture fetch. The first parameter of a texture fetch specifies an object called a texture reference.
 
+<br>
 
-# Index & Architecture
+---
 
-## 2D Grids indices
+## Index & Architecture
+
+<br>
+
+### 2D Grids indices
+
+<br>
 
 ```
 int row = blockIdx.x * blockDim.x + threadIdx.x
@@ -236,7 +291,11 @@ and a general flat index can be written with
 i = r*w + c
 ```
 
-## 2D Block size
+<br>
+
+### 2D Block size
+
+<br>
 
 ```
 dim blockSize(TX, TY)
@@ -253,13 +312,23 @@ And then you can launch:
 KernelName<<<gridSize, blockSize>>> (args)
 ```
 
+<br>
 
-# Getting started with CUDA for Deep Learning
+---
 
-Check the directories under 0-6.
+## Getting started with CUDA for Deep Learning
 
+<br>
 
-# Some Useful References:
+Check the directories under `0-6`.
 
-* [CUDA C Best Practices Guide](http://docs.nvidia.com/cuda/cuda-c-best-practices-guide/).
-* [CUDA for Engineers](https://www.amazon.com/CUDA-Engineers-Introduction-High-Performance-Computing/dp/013417741X).
+<br>
+
+---
+
+## Some Useful References
+
+<br>
+
+* **[CUDA C Best Practices Guide](http://docs.nvidia.com/cuda/cuda-c-best-practices-guide/)**
+* **[CUDA for Engineers](https://www.amazon.com/CUDA-Engineers-Introduction-High-Performance-Computing/dp/013417741X)**
